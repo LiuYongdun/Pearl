@@ -12,7 +12,7 @@ class AstTest(unittest.TestCase):
         select c1 AS c2 from t_t1
             """
         sql_query = self.sql_parser.parse(sql)
-        print(f"ast 测试:{sql_query}")
+        print(f"ast 测试11111:{sql_query}")
 
 
 if __name__ == '__main__':
