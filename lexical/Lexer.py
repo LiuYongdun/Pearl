@@ -59,13 +59,17 @@ class Lexer:
 
         # 将token分为两类,一类是以'[0-9a-zA-Z_]'组成的word_token(sql关键字,字段名等),其他的token归为第二类(逗号,括号,空白字符串等)
         w_token_start = True
+        str_token_start = False
         w_token_regex = '[0-9a-zA-Z_.\'`]'
 
         for i in range(len(sql)):
 
+            if sql[i] == '\'':
+                str_token_start = not str_token_start
+
             # 当前位置的字符属于word_token,则继续往下读,直到遇见非word_token的字符
             if w_token_start:
-                if re.match(w_token_regex, sql[i]):
+                if re.match(w_token_regex, sql[i]) or str_token_start:
                     continue
                 else:
                     w_token_start = False

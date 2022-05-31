@@ -10,13 +10,13 @@ from abc import ABCMeta
 
 class SQLElement(metaclass=ABCMeta):
 
-    def __init__(self, name, alias=None):
+    def __init__(self, name=None, alias=None):
         """
         :param name: sql元素名称
         :param alias: sql元素别名
         """
         self.__name = name
-        self.__alias = alias
+        self.__alias = alias if alias else ''
         self.__position: Position = None
 
     def __eq__(self, other):
@@ -27,7 +27,12 @@ class SQLElement(metaclass=ABCMeta):
         return False
 
     def __str__(self):
-        return str({"name": self.name, "alias": self.alias})
+        if self.alias:
+            return f"{self.name} AS {self.alias}"
+        return f"{self.name}"
+
+    def __repr__(self):
+        return str(self)
 
     @property
     def name(self):

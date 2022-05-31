@@ -10,6 +10,7 @@ from element.SQLElement import SQLElement
 
 
 class SQLQuery(SQLElement):
+
     def __init__(self, name, alias,
                  selectList: List[SQLElement] = None,
                  from_: SQLElement = None,
@@ -37,6 +38,7 @@ class SQLQuery(SQLElement):
         self.__having = having
         self.__order_by = order_by
         self.__limit = limit
+        self.name = str(self)
 
     @property
     def selectList(self):
@@ -102,3 +104,4 @@ class SQLQuery(SQLElement):
         self.__having = None
         self.__order_by = None
         self.__limit = None
+

@@ -8,11 +8,12 @@
 from element.SQLElement import SQLElement
 from element.SQLOperator import SQLOperator
 from typing import List
+from lexical.KeyWord import SQLCommonKeyWord
 
 
 class SQLCall(SQLElement):
 
-    def __init__(self, name, alias,
+    def __init__(self, name=None, alias=None,
                  operator: SQLOperator = None,
                  operandList: List[SQLElement] = None):
         """
@@ -22,3 +23,14 @@ class SQLCall(SQLElement):
         super().__init__(name, alias)
         self.operator = operator
         self.operandList = operandList
+
+    def __str__(self):
+        if self.operator.name in (SQLCommonKeyWord.ADD,
+                                  SQLCommonKeyWord.SUB,
+                                  SQLCommonKeyWord.ALL,
+                                  SQLCommonKeyWord.DIV):
+            self.name = f"({self.operandList[0]}{self.operator.name.value[0]}{self.operandList[1]})"
+        else:
+            self.name = f"{self.operator.name.value[0]}({','.join(map(str, self.operandList))})"
+
+        return super().__str__()

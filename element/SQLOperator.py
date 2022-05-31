@@ -29,11 +29,6 @@ class SQLOperator(SQLElement):
         super().__init__(name, alias)
         self.operator_type = operator_type
 
-    # todo: 看一下有没有用, 没有就删了
-    def __str__(self):
-        return str({"class": SQLOperator,
-                    "fields": {"name": self.name, "alias": self.alias, "operator_type": self.operator_type}})
-
 
 flink_operator_type_dict = {
     FlinkKeyWord.LEFT_PARENTHESIS: SQLOperatorType.LEFT_PARENTHESIS_OPERATOR,
