@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-# @Contact : Artle.Liu (Artle.Liu@fatritech.com)
+# @Contact : Artle.Liu
 # @Description : sql词法分析器
 
 import re
